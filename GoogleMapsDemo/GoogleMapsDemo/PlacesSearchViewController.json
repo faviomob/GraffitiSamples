@@ -1,0 +1,75 @@
+{
+    "***": {
+        "Copyright": "Copyright © 2018, M8 Labs (m8labs.com). All rights reserved.",
+        "License": "BSD License (See LICENSE file provided with this distribution)."
+    },
+    "PlacesSearchViewController": {
+        "***": [
+            "This file will only be loaded if the `restorationIdentifier` for this view controller is set to `PlacesSearchViewController`."
+        ],    
+        "objects": {
+            "placesProvider": {
+                "***": [
+                    "Utilizes Google Places API. Full list of supported place types you can find here https://developers.google.com/places/web-service/supported_types"
+                ],
+                "type": "GooglePlaceNearbyProvider",
+                "attrs": {
+                    "placeType": ""
+                }
+            },
+            "searchController": {
+                "***": [
+                    "This object is to set `searchString` to `placesProvider` via `inputView`.",
+                    "You can omit `contentProvider` outlet here, because it will be set by `mapsController` in case of `nil`."
+                ],
+                "type": "SearchActionController",
+                "attrs": {
+                    "minimumTextLength": 2
+                },
+                "outlets": {
+                    "sender": "inputView",
+                    "contentProvider": "placesProvider"
+                }
+            },
+            "mapsController": {
+                "***": [
+                    "This object is a central controller for other objects and controllers. See GooglePlacesContentController.swift for implementation details."
+                ],
+                "type": "GooglePlacesContentController",
+                "attrs": {
+                    "searchOnMove": false,
+                    "releaseKeyboardOnMove": true,
+                    "defaultMarkerIconPrefix": "marker-",
+                    "markerTitleTapSegue": "placeInfo",
+                    "apiKey": "AIzaSyD2OXg1OavOZcBHWabFas5sFUOXXCi-tzE"
+                },
+                "outlets": {
+                    "infoView": "infoView",
+                    "searchInput": "inputView",
+                    "searchProgressView": "searchProgressView",
+                    "mapContainer": "mapContainer",
+                    "searchController": "searchController",
+                    "mainContentProvider": "placesProvider"
+                }
+            }
+        },
+        "elements": {
+            "placePhoto": {
+                "bindings": [
+                    {
+                        "to": "gx_imageUrl",
+                        "from": "content.photoUrl"
+                    }
+                ]
+            },
+            "infoLabel": {
+                "bindings": [
+                    {
+                        "from": "content.vicinity",
+                        "placeholder": "No information..."
+                    }
+                ]
+            }
+        }
+    }
+}

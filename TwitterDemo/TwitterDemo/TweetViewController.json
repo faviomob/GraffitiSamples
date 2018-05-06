@@ -1,0 +1,81 @@
+{
+    "***": {
+        "Copyright": "Copyright © 2018, M8 Labs (m8labs.com). All rights reserved.",
+        "License": "BSD License (See LICENSE file provided with this distribution)."
+    },
+    "TweetViewController": {
+        "***": [
+            "This file will only be loaded if the `restorationIdentifier` for this view controller is set to `TweetViewController`."
+        ],    
+        "objects": {
+            "tweetActionController": {
+                "***": [
+                    "`ActionController` and its decendans can send forms. Form is a UIView of type `FormDisplayView`, which collects data from its `mandatoryFields` and `optionalFields` outlets.",
+                    "You can connect any type of view to `FormDisplayView`, as soon as it has miningful `gx_fieldValue` override. F.e. for UITextField `gx_fieldValue` returns `text` property.",
+                    "When you press `Post` button, the form collects data from its mandatory and optional fields into dictionary [`gx_fieldName`: `gx_fieldValue`] and pass it to `StandardServiceProvider`.",
+                    "If you leave `form` outlet empty, `ActionController` will pass `content` object of this view controller.",
+                    "Inside Service.json's paths and actions you can access properties of the `content` object and form dictionary values via $keyPath notation.",
+                    "Refer to this view controller view hierarchy for details. Inspect User Defined Runtime Attributes and `mandatoryFields`/`optionalFields` to understand how data is collected."
+                ],
+                "type": "BarButtonActionController",
+                "attrs": {
+                    "actionName": "tweet",
+                    "serviceProviderClassName": "TwitterService"
+                },
+                "outlets": {
+                    "form": "formView",
+                    "sender": "tweetButton"
+                }
+            },
+            "tweetStatusController": {
+                "type": "ActionStatusController",
+                "alias": "tweetStatus",
+                "attrs": {
+                    "actionName": "tweet",
+                    "errorMessage": "Tweet can't be tweeted so far."
+                },
+                "outlets": {
+                    "elements": [
+                        "tweetButton",
+                        "textView"
+                    ]
+                }
+            }
+        },
+        "elements": {
+            "***": [
+                "`@self` is a special element that refers this view controller. If you need to bind some properties to your view controller, this is the way to go.",
+                "Do not use `@self` symbol anywhere, except this section for bindings."
+            ],
+            "@self": {
+                "bindings": [
+                    {
+                        "to": "gx_dismissed",
+                        "from": "tweetStatus.isSuccess"
+                    }
+                ]
+            },
+            "tweetButton": {
+                "bindings": [
+                    {
+                        "to": "gx_disabled",
+                        "from": "tweetStatus.inProgress"
+                    }
+                ]
+            },
+            "textView": {
+                "bindings": [
+                    {
+                        "to": "gx_readOnly",
+                        "from": "tweetStatus.inProgress"
+                    },
+                    {
+                        "predicateFormat": "tweetStatus.isSuccess = 1",
+                        "ifTrue": "",
+                        "ifFalse": "$textView.text"
+                    }
+                ]
+            }
+        }
+    }
+}

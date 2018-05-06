@@ -1,0 +1,5 @@
+github "Alamofire/Alamofire"
+github "Alamofire/AlamofireImage"
+github "gonzalezreal/Groot"
+github "AFNetworking/AFNetworking"
+binary "https://github.com/m8labs/GraffitiSamples/raw/gh-pages/Carthage/Graffiti.json"

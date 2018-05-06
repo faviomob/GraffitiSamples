@@ -1,0 +1,103 @@
+{
+    "***": {
+        "Copyright": "Copyright © 2018, M8 Labs (m8labs.com). All rights reserved.",
+        "License": "BSD License (See LICENSE file provided with this distribution)."
+    },
+    "auth": {
+        "***": [
+            "Get your own ConsumerKey at https://apps.twitter.com",
+            "Keep the 'Consumer Secret' a secret in your real app."
+        ],
+        "url": "https://api.twitter.com/oauth/authorize?oauth_token=$token",
+        "requestTokenPath": "oauth/request_token",
+        "accessTokenPath": "oauth/access_token",
+        "callbackUrl": "twitterdemo://oauth",
+        "consumerKey": "gKaFEVegDlwZvPXvU3McKgtYQ",
+        "consumerSecret": "4raJAt60BCPNuvnZQH5CWriahwduFsFFtpFjfrdEJ4KIfEtDWS"
+    },
+    "defaults": {
+        "***": [
+            "Section for default action parameters. You can override any in each action, except baseUrl."
+        ],
+        "needAuth": true,
+        "httpMethod": "GET",
+        "baseUrl": "https://api.twitter.com",
+        "headers": {},
+        "resultKeyPath": "",
+        "parameters": {}
+    },
+    "actions": {
+        "currentUser": {
+            "***": [
+                "Account object will be created automatically by Groot according to settings in your Model file."
+            ],
+            "path": "1.1/account/verify_credentials.json",
+            "resultType": "Account",
+            "nextAction": "homeTweets"
+        },
+        "homeTweets": {
+            "***": [
+                "Tweet objects will be created automatically by Groot according to settings in your Model file (respecting all complex relationships).",
+                "Removing old tweets just before new will be created. 'clearPolicy' equal to 'after' means after request succeeds."
+            ],
+            "path": "1.1/statuses/home_timeline.json",
+            "resultType": "[Post]",
+            "clearPolicy": "after",
+            "parameters": {
+                "count": "20"
+            },
+            "set": {
+                "hidden": false
+            }
+        },
+        "moreTweets": {
+            "***": [
+                "Same as 'homeTweets', but with pagination (for infinite scroll)."
+            ],
+            "path": "1.1/statuses/home_timeline.json",
+            "resultType": "[Post]",
+            "parameters": {
+                "count": "20",
+                "max_id": "$tweetId"
+            },
+            "set": {
+                "hidden": false
+            }
+        },
+        "prefetchTweets": {
+            "***": [
+                "Same as 'homeTweets'. We cannot reuse 'homeTweets' because of different notifications."
+            ],
+            "path": "1.1/statuses/home_timeline.json",
+            "resultType": "[Post]",
+            "parameters": {
+                "count": "20"
+            }
+        },
+        "tweet": {
+            "***": [
+                "New tweet!"
+            ],
+            "path": "1.1/statuses/update.json",
+            "httpMethod": "POST",
+            "resultType": "Post",
+            "parameters": {
+                "status": "$text"
+            }
+        }
+    },
+    "options": {
+        "***": [
+            "'transformers' section is predefined. But you can use 'options' section for your needs."
+        ],
+        "transformers": {
+            "date": {
+                "default": {
+                    "name": "strToDate",
+                    "format": "EEE MMM d HH:mm:ss Z y",
+                    "locale": "en_US_POSIX"
+                }
+            }
+        }
+    }
+}

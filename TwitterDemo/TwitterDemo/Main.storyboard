@@ -1,0 +1,652 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="c0i-sw-nVe">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="Segues with Peek and Pop" minToolsVersion="7.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Feed View Controller-->
+        <scene sceneID="Wtp-uT-DeX">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="G9X-hH-Nfi" userLabel="Feed View Controller" customClass="TweetsViewController" customModule="TwitterDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Hgh-Wz-bJE"/>
+                        <viewControllerLayoutGuide type="bottom" id="Kpn-QQ-U9v"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ttH-Md-37J">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XNY-Ur-DpE">
+                                <rect key="frame" x="67.5" y="213.5" width="240" height="240"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Tweets here yet!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SXW-LS-cco">
+                                        <rect key="frame" x="14.5" y="105.5" width="211" height="29"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="24"/>
+                                        <color key="textColor" red="0.7019608021" green="0.7019608021" blue="0.8251212309" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="8Zi-Dq-fzx"/>
+                                    <constraint firstItem="SXW-LS-cco" firstAttribute="centerY" secondItem="XNY-Ur-DpE" secondAttribute="centerY" id="dJS-ZW-HpK"/>
+                                    <constraint firstItem="SXW-LS-cco" firstAttribute="centerX" secondItem="XNY-Ur-DpE" secondAttribute="centerX" id="hdf-hU-8n5"/>
+                                    <constraint firstAttribute="height" constant="240" id="yHW-ua-fba"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="82" sectionHeaderHeight="-1" sectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="nmq-wj-UIX" userLabel="Tweets Table View">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="separatorColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <view key="tableFooterView" contentMode="scaleToFill" id="YSj-E4-tU8">
+                                    <rect key="frame" x="0.0" y="110" width="375" height="51"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="hVn-w9-8eZ">
+                                            <rect key="frame" x="177.5" y="15.5" width="20" height="20"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="gx.addBinding" value="&quot;from&quot;: &quot;moreTweets.inProgress&quot;"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </activityIndicatorView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="hVn-w9-8eZ" firstAttribute="centerY" secondItem="YSj-E4-tU8" secondAttribute="centerY" id="9Mk-q9-Ss8"/>
+                                        <constraint firstItem="hVn-w9-8eZ" firstAttribute="centerX" secondItem="YSj-E4-tU8" secondAttribute="centerX" id="tiQ-Cg-cLH"/>
+                                    </constraints>
+                                </view>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="Dqs-0z-ee5" customClass="ContentTableViewCell" customModule="Graffiti">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="82"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Dqs-0z-ee5" id="xS8-rF-SAC">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="81.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TMN-tk-k8f" customClass="ContentDisplayView" customModule="Graffiti">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="81.5"/>
+                                                    <subviews>
+                                                        <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="t4J-k5-Chb">
+                                                            <rect key="frame" x="12" y="12" width="50" height="50"/>
+                                                            <gestureRecognizers/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="50" id="60W-8s-Kt5"/>
+                                                                <constraint firstAttribute="height" constant="50" id="vYs-29-2il"/>
+                                                            </constraints>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                    <integer key="value" value="3"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="gx.addBinding">
+                                                                    <string key="value">"to": "gx_autoValue", "placeholder": "bird", "from": "content.author", "predicateFormat": "imageName != nil", "ifTrue": "$imageName", "ifFalse": "https://twitter.com/$nickname/profile_image?size=bigger"</string>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Tweet text here" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nFh-5r-V4j">
+                                                            <rect key="frame" x="72" y="31" width="248" height="17"/>
+                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <color key="textColor" red="0.32063972509999999" green="0.32063972509999999" blue="0.32063972509999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <color key="highlightedColor" red="0.32063972509999999" green="0.32063972509999999" blue="0.32063972509999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="gx.addBinding" value="&quot;from&quot;: &quot;content.text&quot;, &quot;placeholder&quot;: &quot;&lt;Empty tweet&gt;&quot;"/>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Author" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WxX-7a-axI">
+                                                            <rect key="frame" x="72" y="10" width="246.5" height="17"/>
+                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                                            <color key="textColor" red="0.32063972509999999" green="0.32063972509999999" blue="0.32063972509999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <color key="highlightedColor" red="0.32063972509999999" green="0.32063972509999999" blue="0.32063972509999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="gx.addBinding" value="&quot;from&quot;: &quot;content.author.name&quot;, &quot;placeholder&quot;: &quot;&lt;Author&gt;&quot;"/>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="30m" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UWD-qw-OwC">
+                                                            <rect key="frame" x="335.5" y="12" width="29.5" height="17"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <color key="textColor" red="0.32063972509999999" green="0.32063972509999999" blue="0.32063972509999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <color key="highlightedColor" red="0.32063972509999999" green="0.32063972509999999" blue="0.32063972509999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="gx.addBinding" value="&quot;from&quot;: &quot;content.timeAgoString&quot;, &quot;placeholder&quot;: &quot;--s&quot;"/>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" red="0.98823529409999999" green="0.99215686270000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstItem="nFh-5r-V4j" firstAttribute="leading" secondItem="t4J-k5-Chb" secondAttribute="trailing" constant="10" id="2jo-Ze-wxq"/>
+                                                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="t4J-k5-Chb" secondAttribute="bottom" priority="750" constant="12" id="831-7u-Oae"/>
+                                                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="nFh-5r-V4j" secondAttribute="bottom" constant="10" id="8eD-e0-Fqm"/>
+                                                        <constraint firstItem="UWD-qw-OwC" firstAttribute="leading" secondItem="WxX-7a-axI" secondAttribute="trailing" constant="17" id="9OO-sQ-aHB"/>
+                                                        <constraint firstAttribute="trailing" secondItem="nFh-5r-V4j" secondAttribute="trailing" constant="55" id="F7I-zO-n7F"/>
+                                                        <constraint firstItem="UWD-qw-OwC" firstAttribute="top" secondItem="TMN-tk-k8f" secondAttribute="top" constant="12" id="OTD-nl-l3x"/>
+                                                        <constraint firstItem="WxX-7a-axI" firstAttribute="leading" secondItem="t4J-k5-Chb" secondAttribute="trailing" constant="10" id="Wze-0V-py0"/>
+                                                        <constraint firstItem="WxX-7a-axI" firstAttribute="top" secondItem="TMN-tk-k8f" secondAttribute="top" constant="10" id="d79-vG-P0x"/>
+                                                        <constraint firstItem="t4J-k5-Chb" firstAttribute="top" secondItem="TMN-tk-k8f" secondAttribute="top" constant="12" id="hIS-As-yEa"/>
+                                                        <constraint firstItem="nFh-5r-V4j" firstAttribute="top" secondItem="WxX-7a-axI" secondAttribute="bottom" constant="4" id="nlj-YX-Ff1"/>
+                                                        <constraint firstItem="t4J-k5-Chb" firstAttribute="leading" secondItem="TMN-tk-k8f" secondAttribute="leading" constant="12" id="pC5-BS-gNY"/>
+                                                        <constraint firstAttribute="trailing" secondItem="UWD-qw-OwC" secondAttribute="trailing" constant="10" id="zJ1-fZ-gz6"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="TMN-tk-k8f" firstAttribute="top" secondItem="xS8-rF-SAC" secondAttribute="top" id="BmA-mI-iKS"/>
+                                                <constraint firstAttribute="trailing" secondItem="TMN-tk-k8f" secondAttribute="trailing" id="Has-kC-8Tl"/>
+                                                <constraint firstItem="TMN-tk-k8f" firstAttribute="leading" secondItem="xS8-rF-SAC" secondAttribute="leading" id="Zag-3d-SNu"/>
+                                                <constraint firstAttribute="bottom" secondItem="TMN-tk-k8f" secondAttribute="bottom" id="vOx-lU-BZa"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="contentDisplayView" destination="TMN-tk-k8f" id="DPS-bv-8eh"/>
+                                            <segue destination="Nbk-gB-cgD" kind="show" id="UVa-vy-Bru">
+                                                <segue key="commit" inheritsFrom="parent" id="FnO-N1-84u"/>
+                                                <segue key="preview" inheritsFrom="commit" id="z8l-2j-bh0"/>
+                                            </segue>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="gx.addBinding" value="&quot;to&quot;: &quot;refreshControl.gx_value&quot;, &quot;from&quot;: &quot;homeTweets.inProgress&quot;"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="gx.identifier" value="tweetsTableView"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <outlet property="dataSource" destination="8lF-zK-6eY" id="Dab-vH-Kw3"/>
+                                    <outlet property="delegate" destination="8lF-zK-6eY" id="CiK-tq-c7Y"/>
+                                </connections>
+                            </tableView>
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="60e-nP-UB1">
+                                <rect key="frame" x="321" y="613" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="VGr-Lc-QsG"/>
+                                    <constraint firstAttribute="width" constant="40" id="bLI-V4-084"/>
+                                </constraints>
+                                <state key="normal" title="Tweet" image="bird"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <integer key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <segue destination="uqL-Ap-tKx" kind="presentation" id="x0U-F8-0Yv"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="5TX-k6-5zT" firstAttribute="trailing" secondItem="60e-nP-UB1" secondAttribute="trailing" constant="14" id="8rC-YE-J8y"/>
+                            <constraint firstItem="XNY-Ur-DpE" firstAttribute="centerY" secondItem="ttH-Md-37J" secondAttribute="centerY" id="9Ne-DR-IBO"/>
+                            <constraint firstItem="Kpn-QQ-U9v" firstAttribute="top" secondItem="60e-nP-UB1" secondAttribute="bottom" constant="14" id="Jec-nN-3xp"/>
+                            <constraint firstItem="XNY-Ur-DpE" firstAttribute="centerX" secondItem="ttH-Md-37J" secondAttribute="centerX" id="RCA-n5-yLI"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="5TX-k6-5zT"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="dHq-MM-U8W">
+                        <nil key="title"/>
+                        <barButtonItem key="backBarButtonItem" title=" " id="TrV-0Y-OJM"/>
+                        <barButtonItem key="leftBarButtonItem" title="Sign in" id="1by-xn-3Dg" userLabel="Auth Button">
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="gx.identifier" value="signInButton"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="gx.addBinding" value="&quot;predicateFormat&quot;: &quot;content == nil&quot;, &quot;ifTrue&quot;: &quot;Sign in&quot;, &quot;ifFalse&quot;: &quot;Logout $content.nickname&quot;, &quot;format&quot;: &quot;%@...&quot;"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="gx.addBinding" value="&quot;from&quot;: &quot;currentUser.inProgress&quot;, &quot;to&quot;: &quot;gx_disabled&quot;"/>
+                            </userDefinedRuntimeAttributes>
+                        </barButtonItem>
+                        <view key="titleView" contentMode="scaleToFill" id="n8E-Kg-mg8">
+                            <rect key="frame" x="188" y="22" width="0.0" height="0.0"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bird" translatesAutoresizingMaskIntoConstraints="NO" id="AS6-2g-T4Z">
+                                    <rect key="frame" x="-15" y="-15" width="30" height="30"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="30" id="8b9-IZ-edk"/>
+                                        <constraint firstAttribute="width" constant="30" id="Zo3-mc-q3o"/>
+                                    </constraints>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                            <integer key="value" value="15"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="gx.identifier" value="birdImageView"/>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="gx.addBinding" value="&quot;to&quot;: &quot;gx_imageName&quot;, &quot;predicateFormat&quot;: &quot;content == nil&quot;, &quot;ifTrue&quot;: &quot;bird&quot;, &quot;ifFalse&quot;: null"/>
+                                    </userDefinedRuntimeAttributes>
+                                </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CUk-ga-ecj">
+                                    <rect key="frame" x="-23.5" y="-10.5" width="47" height="21"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                    <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                    <nil key="highlightedColor"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="gx.identifier" value="titleLabel"/>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="gx.addBinding" value="&quot;predicateFormat&quot;: &quot;content == nil&quot;, &quot;ifTrue&quot;: &quot;&quot;, &quot;ifFalse&quot;: &quot;$content.name&quot;"/>
+                                    </userDefinedRuntimeAttributes>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstItem="AS6-2g-T4Z" firstAttribute="centerX" secondItem="n8E-Kg-mg8" secondAttribute="centerX" id="Fcf-rq-S9N"/>
+                                <constraint firstItem="AS6-2g-T4Z" firstAttribute="centerY" secondItem="n8E-Kg-mg8" secondAttribute="centerY" id="KX0-gG-BhP"/>
+                                <constraint firstItem="CUk-ga-ecj" firstAttribute="centerY" secondItem="n8E-Kg-mg8" secondAttribute="centerY" id="MMs-at-PH0"/>
+                                <constraint firstItem="CUk-ga-ecj" firstAttribute="centerX" secondItem="n8E-Kg-mg8" secondAttribute="centerX" id="ZfU-24-IfI"/>
+                            </constraints>
+                        </view>
+                        <barButtonItem key="rightBarButtonItem" style="done" id="yyk-x2-kGV">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="U9e-L9-6R0" userLabel="News Button">
+                                <rect key="frame" x="269" y="6" width="90" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="News! (0)"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="gx.identifier" value="newsButton"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="gx.addBinding" value="&quot;from&quot;: &quot;newsCounter.value&quot;, &quot;format&quot;: &quot;News! (%@)&quot;"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="gx.addBinding" value="&quot;from&quot;: &quot;newsCounter.isEmpty&quot;, &quot;to&quot;: &quot;hidden&quot;"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="newsTap:" destination="G9X-hH-Nfi" eventType="touchUpInside" id="hvC-7N-xX4"/>
+                                    <action selector="prefetchFeed:" destination="oU1-qj-qIS" eventType="touchUpInside" id="jgv-Xc-qyD"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="serviceProviderClassName" value="TwitterService"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <outlet property="activityIndicator" destination="hVn-w9-8eZ" id="f4X-uF-VUS"/>
+                        <outlet property="tableView" destination="nmq-wj-UIX" id="jva-e7-FYU"/>
+                        <outlet property="titleLabel" destination="CUk-ga-ecj" id="Z2K-hb-PrY"/>
+                        <outletCollection property="objects" destination="oU1-qj-qIS" collectionClass="NSMutableArray" id="vdp-51-gRg"/>
+                        <outletCollection property="objects" destination="XBN-Sg-56h" collectionClass="NSMutableArray" id="fcN-Uv-EvE"/>
+                        <outletCollection property="objects" destination="fWc-R0-54J" collectionClass="NSMutableArray" id="3Fx-PD-GGb"/>
+                        <outletCollection property="objects" destination="MR9-Ng-S0d" collectionClass="NSMutableArray" id="n6N-tX-9m0"/>
+                        <outletCollection property="objects" destination="MQi-NM-JVo" collectionClass="NSMutableArray" id="qKT-MU-j1c"/>
+                        <outletCollection property="objects" destination="8lF-zK-6eY" collectionClass="NSMutableArray" id="y9E-SP-D92"/>
+                        <outletCollection property="objects" destination="f5L-n5-M16" collectionClass="NSMutableArray" id="daX-uD-Dxa"/>
+                        <outletCollection property="objects" destination="hnG-XZ-3iI" collectionClass="NSMutableArray" id="Twf-Db-egw"/>
+                        <outletCollection property="objects" destination="mwd-HF-Qdo" collectionClass="NSMutableArray" id="SjR-G4-Hnu"/>
+                        <outletCollection property="objects" destination="vW4-oS-EEH" collectionClass="NSMutableArray" id="saA-ah-BFT"/>
+                        <outletCollection property="objects" destination="BTL-3M-IaG" collectionClass="NSMutableArray" id="KXb-80-Qps"/>
+                        <outletCollection property="objects" destination="WVr-1a-Dq7" collectionClass="NSMutableArray" id="0v4-UZ-y2u"/>
+                        <outletCollection property="objects" destination="h4W-qF-0yy" collectionClass="NSMutableArray" id="GCh-v2-Bt0"/>
+                        <outletCollection property="objects" destination="1RI-2c-QfF" collectionClass="NSMutableArray" id="WaE-lh-7iU"/>
+                        <outletCollection property="objects" destination="Kqj-Ue-QRI" collectionClass="NSMutableArray" id="IAt-vE-Pxy"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Nko-RG-6PT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="oU1-qj-qIS" userLabel="Twitter Actions" customClass="TwitterActions" customModule="TwitterDemo" customModuleProvider="target">
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="gx.identifier" value="customTwitterActions"/>
+                    </userDefinedRuntimeAttributes>
+                </customObject>
+                <customObject id="gO2-5I-f5t" userLabel="--- Providers ----------------------------"/>
+                <customObject id="XBN-Sg-56h" userLabel="Current User Provider" customClass="ManagedObjectsProvider" customModule="Graffiti">
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="entityName" value="Account"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="resultChainTxt" value="gx_first"/>
+                    </userDefinedRuntimeAttributes>
+                </customObject>
+                <customObject id="fWc-R0-54J" userLabel="Feed Content Provider" customClass="ManagedObjectsProvider" customModule="Graffiti">
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="entityName" value="Post"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="sortByFields" value="timestamp"/>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="sortAscending" value="NO"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="predicateFormat" value="SELF.isHidden = 0"/>
+                    </userDefinedRuntimeAttributes>
+                </customObject>
+                <customObject id="MR9-Ng-S0d" userLabel="News Button Content Provider" customClass="ManagedObjectsProvider" customModule="Graffiti">
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="entityName" value="Post"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="alias" value="newsCounter"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="predicateFormat" value="SELF.isHidden = 1"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="resultChainTxt" value="gx_count"/>
+                    </userDefinedRuntimeAttributes>
+                </customObject>
+                <customObject id="3S3-7t-6AE" userLabel="--- Content Controllers ------------------"/>
+                <customObject id="MQi-NM-JVo" userLabel="Current User Content Controller" customClass="BaseContentController" customModule="Graffiti">
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="shouldSetViewControllerContent" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <outlet property="mainContentProvider" destination="XBN-Sg-56h" id="DNb-9X-kaW"/>
+                    </connections>
+                </customObject>
+                <customObject id="8lF-zK-6eY" userLabel="Feed Table Content Controller" customClass="InfiniteScrollContentController" customModule="Graffiti">
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="reloadOn" value="showAvatarsChanged"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <outlet property="emptyDataView" destination="XNY-Ur-DpE" id="2Ha-5W-5rz"/>
+                        <outlet property="mainContentProvider" destination="fWc-R0-54J" id="jwg-eK-zaT"/>
+                        <outletCollection property="elements" destination="nmq-wj-UIX" collectionClass="NSMutableArray" id="xAz-Kn-TOA"/>
+                    </connections>
+                </customObject>
+                <customObject id="f5L-n5-M16" userLabel="News Button Content Controller" customClass="BaseContentController" customModule="Graffiti">
+                    <connections>
+                        <outlet property="mainContentProvider" destination="MR9-Ng-S0d" id="hRP-Gd-DEL"/>
+                        <outletCollection property="elements" destination="U9e-L9-6R0" collectionClass="NSMutableArray" id="Brm-3c-tqx"/>
+                    </connections>
+                </customObject>
+                <customObject id="9M2-dN-ayF" userLabel="--- Action Controllers --------------------"/>
+                <customObject id="hnG-XZ-3iI" userLabel="Auth Action Controller" customClass="BarButtonActionController" customModule="Graffiti">
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="predicateFormat" value="content == nil"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="login"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="elseActionName" value="logout"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <outlet property="sender" destination="1by-xn-3Dg" id="pTg-dx-yXI"/>
+                        <outlet property="target" destination="oU1-qj-qIS" id="J0K-SS-lze"/>
+                    </connections>
+                </customObject>
+                <customObject id="1RI-2c-QfF" customClass="OnLoadActionController" customModule="Graffiti">
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="currentUser"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <outlet property="sender" destination="1by-xn-3Dg" id="b7U-7t-fAC"/>
+                        <outlet property="target" destination="oU1-qj-qIS" id="e0G-Zg-sxG"/>
+                    </connections>
+                </customObject>
+                <customObject id="Kqj-Ue-QRI" userLabel="Prefetch Action Controller" customClass="TimerActionController" customModule="Graffiti">
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="predicateFormat" value="content != nil"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="prefetchTweets"/>
+                        <userDefinedRuntimeAttribute type="number" keyPath="interval">
+                            <integer key="value" value="60"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <outlet property="sender" destination="1by-xn-3Dg" id="5HP-k5-N0J"/>
+                        <outlet property="target" destination="oU1-qj-qIS" id="rJO-b2-OlA"/>
+                    </connections>
+                </customObject>
+                <customObject id="mwd-HF-Qdo" customClass="TableRefreshActionController" customModule="Graffiti">
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="homeTweets"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <outlet property="sender" destination="nmq-wj-UIX" id="6rl-TY-PKs"/>
+                    </connections>
+                </customObject>
+                <customObject id="vW4-oS-EEH" userLabel="Table Infinite Scroll Action Controller" customClass="InfiniteScrollActionController" customModule="Graffiti">
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="moreTweets"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <outlet property="sender" destination="nmq-wj-UIX" id="ubB-i6-DZO"/>
+                    </connections>
+                </customObject>
+                <customObject id="rYJ-c4-D1U" userLabel="--- Action Status Controllers -------------"/>
+                <customObject id="BTL-3M-IaG" userLabel="Current User Action Status Controller" customClass="ActionStatusController" customModule="Graffiti">
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="currentUser"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="gx.identifier" value="currentUser"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <outletCollection property="elements" destination="1by-xn-3Dg" collectionClass="NSMutableArray" id="Aym-Da-whI"/>
+                    </connections>
+                </customObject>
+                <customObject id="WVr-1a-Dq7" userLabel="Home Tweets Action Status Controller" customClass="ActionStatusController" customModule="Graffiti">
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="homeTweets"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="errorMessage" value="Не удалось загрузить твиты!" localized="YES"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="gx.identifier" value="homeTweets"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <outletCollection property="elements" destination="nmq-wj-UIX" collectionClass="NSMutableArray" id="7J7-Ju-LwB"/>
+                    </connections>
+                </customObject>
+                <customObject id="h4W-qF-0yy" userLabel="More Tweets Action Status Controller" customClass="ActionStatusController" customModule="Graffiti">
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="moreTweets"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="errorMessage" value="Не удалось загрузить твиты!" localized="YES"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="gx.identifier" value="moreTweets"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <outletCollection property="elements" destination="hVn-w9-8eZ" collectionClass="NSMutableArray" id="bCd-Bj-w5H"/>
+                    </connections>
+                </customObject>
+            </objects>
+            <point key="canvasLocation" x="-140" y="285"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="mm0-tG-UoZ">
+            <objects>
+                <navigationController id="c0i-sw-nVe" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="hvd-Hg-ZIZ">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="G9X-hH-Nfi" kind="relationship" relationship="rootViewController" id="MG9-l7-7eB"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GpU-of-oIp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1039" y="285"/>
+        </scene>
+        <!--Tweet Details-->
+        <scene sceneID="2ra-PM-akM">
+            <objects>
+                <viewController id="Nbk-gB-cgD" userLabel="Tweet Details" customClass="TweetDetailsViewController" customModule="TwitterDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Lkh-mX-rWo"/>
+                        <viewControllerLayoutGuide type="bottom" id="cF0-It-erm"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Kn6-UZ-Iua">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CV6-gR-lRZ">
+                                <rect key="frame" x="156" y="74" width="63" height="23"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="gx.addBinding" value="&quot;from&quot;: &quot;content.author.name&quot;, &quot;placeholder&quot;: &quot;&lt;Author&gt;&quot;"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="249" verticalCompressionResistancePriority="751" text="Tweet text here" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mWW-0d-e3C" customClass="KILabel">
+                                <rect key="frame" x="16" y="308" width="343" height="21.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="gx.addBinding" value="&quot;from&quot;: &quot;content.text&quot;, &quot;placeholder&quot;: &quot;&lt;Empty Tweet&gt;&quot;"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="5/2/2017" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3gE-tP-DRH">
+                                <rect key="frame" x="16" y="360.5" width="57.5" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="gx.addBinding" value="&quot;from&quot;: &quot;content.timestampString&quot;, &quot;placeholder&quot;: &quot;--s&quot;"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fPD-zB-uH8">
+                                <rect key="frame" x="16" y="395.5" width="31" height="15"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="gx.addBinding" value="&quot;from&quot;: &quot;content.favoritesCount&quot;, &quot;placeholder&quot;: &quot;--&quot;"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RETWEETS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RbB-QU-SOR">
+                                <rect key="frame" x="57" y="395.5" width="64" height="15"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ICg-lf-tWI">
+                                <rect key="frame" x="151" y="395.5" width="31" height="15"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="gx.addBinding" value="&quot;from&quot;: &quot;content.retweetCount&quot;, &quot;placeholder&quot;: &quot;--&quot;"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FAVORITES" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h7u-WK-jFx">
+                                <rect key="frame" x="192" y="395.5" width="65" height="15"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@Author" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kZk-Vv-0mo">
+                                <rect key="frame" x="159" y="101" width="57" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="gx.addBinding" value="&quot;from&quot;: &quot;content.author.nickname&quot;, &quot;placeholder&quot;: &quot;&lt;Author&gt;&quot;, &quot;format&quot;: &quot;@%@&quot;"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bird" translatesAutoresizingMaskIntoConstraints="NO" id="i8f-uX-HnS">
+                                <rect key="frame" x="107.5" y="133" width="160" height="160"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="160" id="6Um-Oc-5va"/>
+                                    <constraint firstAttribute="height" constant="160" id="Qd9-ys-Ixm"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="gx.addBinding">
+                                        <string key="value">                        "to": "gx_autoValue", "placeholder": "bird", "from": "content.author", "predicateFormat": "imageName != nil", "ifTrue": "$imageName", "ifFalse": "https://twitter.com/$nickname/profile_image?size=original"</string>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="RbB-QU-SOR" firstAttribute="top" secondItem="fPD-zB-uH8" secondAttribute="top" id="1PB-U8-VUy"/>
+                            <constraint firstItem="fPD-zB-uH8" firstAttribute="leading" secondItem="Kn6-UZ-Iua" secondAttribute="leading" constant="16" id="1bv-OG-rw2"/>
+                            <constraint firstItem="ICg-lf-tWI" firstAttribute="top" secondItem="fPD-zB-uH8" secondAttribute="top" id="8RB-SL-PvK"/>
+                            <constraint firstItem="3gE-tP-DRH" firstAttribute="leading" secondItem="Kn6-UZ-Iua" secondAttribute="leading" constant="16" id="8mc-OA-aDl"/>
+                            <constraint firstItem="CV6-gR-lRZ" firstAttribute="centerX" secondItem="Kn6-UZ-Iua" secondAttribute="centerX" id="9QF-x8-6kO"/>
+                            <constraint firstItem="h7u-WK-jFx" firstAttribute="top" secondItem="fPD-zB-uH8" secondAttribute="top" id="B8D-qF-7ld"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="3gE-tP-DRH" secondAttribute="trailing" constant="20" symbolic="YES" id="C2t-lf-Re0"/>
+                            <constraint firstItem="i8f-uX-HnS" firstAttribute="centerX" secondItem="Kn6-UZ-Iua" secondAttribute="centerX" id="ChN-tF-uw8"/>
+                            <constraint firstItem="RbB-QU-SOR" firstAttribute="leading" secondItem="fPD-zB-uH8" secondAttribute="trailing" constant="10" id="Mef-Kk-K1c"/>
+                            <constraint firstItem="mWW-0d-e3C" firstAttribute="leading" secondItem="Kn6-UZ-Iua" secondAttribute="leading" constant="16" id="MsW-8d-f5z"/>
+                            <constraint firstItem="ICg-lf-tWI" firstAttribute="leading" secondItem="RbB-QU-SOR" secondAttribute="trailing" constant="30" id="NfI-nj-ydw"/>
+                            <constraint firstItem="mWW-0d-e3C" firstAttribute="top" secondItem="i8f-uX-HnS" secondAttribute="bottom" constant="15" id="WCu-dy-hcV"/>
+                            <constraint firstItem="h7u-WK-jFx" firstAttribute="leading" secondItem="ICg-lf-tWI" secondAttribute="trailing" constant="10" id="esu-kr-h5S"/>
+                            <constraint firstItem="kZk-Vv-0mo" firstAttribute="top" secondItem="CV6-gR-lRZ" secondAttribute="bottom" constant="4" id="fzb-0r-KRL"/>
+                            <constraint firstItem="kZk-Vv-0mo" firstAttribute="centerX" secondItem="Kn6-UZ-Iua" secondAttribute="centerX" id="gem-6e-gAa"/>
+                            <constraint firstItem="3gE-tP-DRH" firstAttribute="top" secondItem="mWW-0d-e3C" secondAttribute="bottom" constant="31" id="hIr-GF-Eqb"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="h7u-WK-jFx" secondAttribute="trailing" constant="20" symbolic="YES" id="kYN-Hp-cf8"/>
+                            <constraint firstAttribute="trailing" secondItem="mWW-0d-e3C" secondAttribute="trailing" constant="16" id="kyb-7T-hnB"/>
+                            <constraint firstItem="fPD-zB-uH8" firstAttribute="top" secondItem="3gE-tP-DRH" secondAttribute="bottom" constant="18" id="rNb-ZA-hOW"/>
+                            <constraint firstItem="i8f-uX-HnS" firstAttribute="top" secondItem="kZk-Vv-0mo" secondAttribute="bottom" constant="15" id="vCu-6i-mC4"/>
+                            <constraint firstItem="CV6-gR-lRZ" firstAttribute="top" secondItem="Lkh-mX-rWo" secondAttribute="bottom" constant="10" id="xNY-YT-qfe"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Pb7-Dq-8KO"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Tweet" id="V5E-oh-Hf7"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="idy-Y1-Y4O" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="772" y="285"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Dcq-e9-JoG">
+            <objects>
+                <navigationController id="uqL-Ap-tKx" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="vHD-v8-ilt">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="qTg-93-5WR" kind="relationship" relationship="rootViewController" id="nqO-YM-meD"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OXL-Ct-Xbf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="772" y="-488"/>
+        </scene>
+        <!--Tweet-->
+        <scene sceneID="oT2-bq-JPR">
+            <objects>
+                <viewController useStoryboardIdentifierAsRestorationIdentifier="YES" id="qTg-93-5WR" customClass="TweetViewController" customModule="TwitterDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="hdc-DH-mBd"/>
+                        <viewControllerLayoutGuide type="bottom" id="dCC-hs-vqQ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="6oU-g6-ZMb" customClass="FormDisplayView" customModule="Graffiti">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ypg-Fx-iZ8">
+                                <rect key="frame" x="8" y="72" width="359" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="AYL-WB-3AY"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <integer key="value" value="6"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <integer key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" red="0.83741801979999997" green="0.83743780850000005" blue="0.83742713930000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="gx.identifier" value="textView"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="gx_fieldName" value="text"/>
+                                </userDefinedRuntimeAttributes>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="ypg-Fx-iZ8" secondAttribute="trailing" constant="8" id="Cd8-JE-orW"/>
+                            <constraint firstItem="ypg-Fx-iZ8" firstAttribute="top" secondItem="hdc-DH-mBd" secondAttribute="bottom" constant="8" id="HtJ-pm-XCD"/>
+                            <constraint firstItem="ypg-Fx-iZ8" firstAttribute="leading" secondItem="6oU-g6-ZMb" secondAttribute="leading" constant="8" id="U7V-0J-Z2c"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="X7K-m8-S7r"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="gx.identifier" value="formView"/>
+                            <userDefinedRuntimeAttribute type="string" keyPath="dublicateKeyPolicy" value="join"/>
+                        </userDefinedRuntimeAttributes>
+                        <connections>
+                            <outletCollection property="mandatoryFields" destination="ypg-Fx-iZ8" collectionClass="NSMutableArray" id="ads-3z-gyZ"/>
+                        </connections>
+                    </view>
+                    <navigationItem key="navigationItem" title="Tweet" id="6vg-st-MM1">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="fq3-Ec-8uY">
+                            <connections>
+                                <action selector="dismissAction:" destination="qTg-93-5WR" id="O9i-9P-C5y"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Post" style="done" id="MAg-kv-kNX">
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="gx.identifier" value="tweetButton"/>
+                            </userDefinedRuntimeAttributes>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="textView" destination="ypg-Fx-iZ8" id="ThL-Mh-hS6"/>
+                        <outlet property="tweetButton" destination="MAg-kv-kNX" id="2hG-20-hPT"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Gb0-J0-5hJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1652" y="-488"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="bird" width="202" height="202"/>
+    </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="UVa-vy-Bru"/>
+    </inferredMetricsTieBreakers>
+</document>
